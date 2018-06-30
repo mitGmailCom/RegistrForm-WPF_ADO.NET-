@@ -11,4 +11,9 @@
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="Margin" Value="20,0"></Setter>
     </Style>
+
+    <Style TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="20,0"></Setter>
+    </Style>
+           
 </ResourceDictionary>

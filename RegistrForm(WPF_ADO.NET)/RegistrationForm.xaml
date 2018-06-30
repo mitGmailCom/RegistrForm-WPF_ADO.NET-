@@ -29,37 +29,45 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock x:Name="textBlLogin" Text="Login" />
                 <materialDesign:PackIcon Kind="Account" Foreground="Gray" Margin="35,0,10,0" VerticalAlignment="Center"></materialDesign:PackIcon>
-                <TextBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="login" Width="150"></TextBox>
+                <TextBox Name="textBoxLoginAdd" FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="login" Width="150" PreviewKeyUp="TBoxLogin_PreviewKeyUp"></TextBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+            <StackPanel Name="StPanelPass" Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock x:Name="textBlPassword" Text="Password" />
                 <materialDesign:PackIcon Kind="Key" Foreground="Gray" Margin="35,0,10,0" VerticalAlignment="Center"></materialDesign:PackIcon>
-                <PasswordBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="password" Width="150"></PasswordBox>
+                <PasswordBox Name="PaswBowPassAdd"  FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="password" Width="117"></PasswordBox>
+                <!--<Button Name="btnShowPass" Foreground="Black" Click="btnShowPass_Click"/>-->
+                <RepeatButton Name="btnShowPass" Content="s" Foreground="Black" Background="#FF3E5F49" Click="btnShowPass_Click" Width="32" PreviewMouseLeftButtonUp="btnShowPass_PreviewMouseLeftButtonUp">
+                    <!--<materialDesign:PackIcon Kind="FormatLineSpacing" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"></materialDesign:PackIcon>-->
+                    <RepeatButton.ToolTip>
+                        <TextBlock TextAlignment="Center" Text="Show Password"></TextBlock>
+                    </RepeatButton.ToolTip>
+                </RepeatButton>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock x:Name="textBlConfirmPassword" Text="Confirm Password" />
                 <materialDesign:PackIcon Kind="Key" Foreground="Gray" Margin="35,0,10,0" VerticalAlignment="Center"></materialDesign:PackIcon>
-                <PasswordBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="password" Width="150"></PasswordBox>
+                <PasswordBox Name="ConfirmPasswordAdd" FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="password" Width="150" LostKeyboardFocus="PasswordBox_LostKeyboardFocus"></PasswordBox>
+                
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock x:Name="textBlEmail" Text="Email" />
                 <materialDesign:PackIcon Kind="Email" Foreground="Gray" Margin="35,0,10,0" VerticalAlignment="Center"></materialDesign:PackIcon>
-                <TextBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="email" Width="150"></TextBox>
+                <TextBox Name="textBoxEmailAdd" FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="email" Width="150"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock x:Name="textBlAdress" Text="Adress" />
                 <materialDesign:PackIcon Kind="Home" Foreground="Gray" VerticalAlignment="Center" Margin="35,0,10,0"></materialDesign:PackIcon>
-                <TextBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="adress" Width="150"></TextBox>
+                <TextBox Name="textBoxAdressAdd" FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="adress" Width="150"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock x:Name="textBlPhone" Text="Phone"/>
                 <materialDesign:PackIcon Kind="Cellphone" Foreground="Gray" VerticalAlignment="Center" Margin="35,0,10,0"></materialDesign:PackIcon>
-                <TextBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="phone" Width=" 150"></TextBox>
+                <TextBox Name="textBoxPhoneAdd" FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="phone" Width=" 150" PreviewKeyUp="TBoxPhone_PreviewKeyUp"></TextBox>
             </StackPanel>
             <Grid Margin="0,20">
                 <CheckBox Name="chBoxIsAdmin" HorizontalAlignment="Center" Content="Are you addmin?"  FontWeight="Bold" Foreground="Black" FontSize="20" FontFamily="Segoi UI"></CheckBox>
             </Grid>
-            <Button Name="btnRegistr" HorizontalAlignment="Center" Width="150" Height="50" Margin="0,5" Padding="20,0,20,0" FontFamily="Impact" FontSize="24" Content="Registr" Background="#FF3E5F49" BorderBrush="Black" Foreground="#FFAAE83D"></Button>
+            <Button Name="btnRegistr" HorizontalAlignment="Center" Width="150" Height="50" Margin="0,5" Padding="20,0,20,0" FontFamily="Impact" FontSize="24" Content="Registr" Background="#FF3E5F49" BorderBrush="Black" Foreground="#FFAAE83D" Click="btnRegistr_Click"></Button>
         </StackPanel>
     </Grid>
 </Window>

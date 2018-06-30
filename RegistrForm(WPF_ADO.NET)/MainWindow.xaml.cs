@@ -22,23 +22,39 @@ namespace RegistrForm_WPF_ADO.NET_
     /// </summary>
     public partial class MainWindow : Window
     {
-        SqlConnection connect;
-        private static string stringConect;
-        List<string> LoginsList;
+        protected internal SqlConnection connect;
+        protected internal static string stringConect;
+        protected internal SqlDataReader rdr = null;
+        protected internal List<string> LoginsList;
+        protected internal int ControlsNameContextMenu;
+
         public MainWindow()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
         }
 
+        protected internal void Connect()
+        {
+            rdr = null;
+            connect = new SqlConnection();
+            stringConect = ConfigurationManager.ConnectionStrings["connectUsers"].ConnectionString;
+            connect.ConnectionString = stringConect;
+        }
+
+        protected internal void BlockFinally()
+        {
+            if (rdr != null)
+                rdr.Close();
+            if (connect != null)
+                connect.Close();
+        }
+
         private void ShowAllUsers()
         {
             listBox.Items.Clear();
             LoginsList = new List<string>();
-            SqlDataReader rdr = null;
-            connect = new SqlConnection();
-            stringConect = ConfigurationManager.ConnectionStrings["connectUsers"].ConnectionString;
-            connect.ConnectionString = stringConect;
+            Connect();
             string strQueryAllUsers = @"Select * from Users";
             SqlCommand commandAllUsers = new SqlCommand(strQueryAllUsers, connect);
             int line = 0;
@@ -63,10 +79,7 @@ namespace RegistrForm_WPF_ADO.NET_
             }
             finally
             {
-                if (connect != null)
-                    connect.Close();
-                if (rdr != null)
-                    rdr.Close();
+                BlockFinally();
             }
         }
 
@@ -90,10 +103,7 @@ namespace RegistrForm_WPF_ADO.NET_
         private void chBoxFiltrForAdmin_Checked(object sender, RoutedEventArgs e)
         {
             listBox.Items.Clear();
-            SqlDataReader rdr = null;
-            connect = new SqlConnection();
-            stringConect = ConfigurationManager.ConnectionStrings["connectUsers"].ConnectionString;
-            connect.ConnectionString = stringConect;
+            Connect();
             string strQueryAllAdmins = @"Select * from Users where Admin = @p3";
             SqlCommand commandAllAdmins = new SqlCommand(strQueryAllAdmins, connect);
             int t = 1;
@@ -114,10 +124,7 @@ namespace RegistrForm_WPF_ADO.NET_
             }
             finally
             {
-                if (rdr != null)
-                    rdr.Close();
-                if (connect != null)
-                    connect.Close();
+                BlockFinally();
             }
         }
 
@@ -128,9 +135,69 @@ namespace RegistrForm_WPF_ADO.NET_
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
+            var obj = sender;
+            var ee = e; 
             EditForm editForm = new EditForm();
             editForm.Owner = this;
             editForm.Show();
         }
+
+
+
+        private void listBox_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            ControlsNameContextMenu = (sender as ListBox).SelectedIndex;
+        }
+      
+        // выделить элемент
+        private void listBox_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //ControlsNameContextMenu = (sender as ListBox).SelectedIndex;
+        }
+
+        private void listBox_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ControlsNameContextMenu = (sender as ListBox).SelectedIndex;
+        }
+
+
+        private void btnDelUser_Click(object sender, RoutedEventArgs e)
+        {
+            Connect();
+            string strQueryEdit = "Delete from Users where Id=@id";
+            SqlCommand commandUpdate = new SqlCommand(strQueryEdit, connect);
+            commandUpdate.Parameters.AddWithValue("@id", ControlsNameContextMenu+1);
+            try
+            {
+                connect.Open();
+                commandUpdate.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"{ex.Message}", "Error");
+            }
+            finally
+            {
+                BlockFinally();
+            }
+            LoginsList.RemoveAt(ControlsNameContextMenu);
+            MessageBox.Show("The Data removed", "Delete Item");
+            listBox.Items.Clear();
+            for (int i = 0; i < LoginsList.Count; i++)
+            {
+                listBox.Items.Add(LoginsList[i]);
+            }
+        }
+
+
+        public int ContMenuOwnerName
+        {
+            get
+            {
+                return ControlsNameContextMenu;
+            }
+        }
+
+        
     }
 }

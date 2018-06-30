@@ -8,7 +8,7 @@
         Title="Resistration" Height="550" Width="525" WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" AllowsTransparency="True" WindowStyle="None" Background="#00000000">
     <Window.Resources>
-
+        <!--<ResourceDictionary Source="Dictionary1.xaml" />-->
     </Window.Resources>
     <Grid>
         <Rectangle RadiusY="9.7" RadiusX="9.7" Fill="White"/>
@@ -24,37 +24,37 @@
         <Button Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,530" Click="Button_Click">
             <materialDesign:PackIcon Kind="FormatLineSpacing" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"></materialDesign:PackIcon>
         </Button>
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical"  Margin="50,20">
             <TextBlock HorizontalAlignment="Center" Width="150" Margin="0,30,0,20" TextAlignment="Center" FontFamily="Forte" FontSize="28" Text="Edit Profile"></TextBlock>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock Name="textBlLoginEdit" Text="Login" />
                 <materialDesign:PackIcon Kind="Account" Foreground="Gray" Margin="35,0,10,0" VerticalAlignment="Center"></materialDesign:PackIcon>
-                <TextBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="login" Width="150"></TextBox>
+                <TextBox Name="textBoxLoginEdit" FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="login" Width="150" PreviewKeyUp="textBoxLoginEdit_PreviewKeyUp"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock Name="textBlPasswordEdit" Text="Password" />
                 <materialDesign:PackIcon Kind="Key" Foreground="Gray" Margin="35,0,10,0" VerticalAlignment="Center"></materialDesign:PackIcon>
-                <PasswordBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="password" Width="150"></PasswordBox>
+                <PasswordBox Name="PaswBowPassEdit" FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="password" Width="150"></PasswordBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock Name="textBlEmailEdit" Text="Email" />
                 <materialDesign:PackIcon Kind="Email" Foreground="Gray" Margin="35,0,10,0" VerticalAlignment="Center"></materialDesign:PackIcon>
-                <TextBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="email" Width="150"></TextBox>
+                <TextBox Name="textBoxEmailEdit" FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="email" Width="150"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock Name="textBlAdressEdit" Text="Adress" />
                 <materialDesign:PackIcon Kind="Home" Foreground="Gray" VerticalAlignment="Center"  Margin="35,0,10,0"></materialDesign:PackIcon>
-                <TextBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="adress" Width="150"></TextBox>
+                <TextBox Name="textBoxAdressEdit" FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="adress" Width="150"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock Name="textBlPhoneEdit" Text="Phone"/>
                 <materialDesign:PackIcon Kind="Cellphone" Foreground="Gray" VerticalAlignment="Center" Margin="35,0,10,0"></materialDesign:PackIcon>
-                <TextBox FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="phone" Width=" 150"></TextBox>
+                <TextBox Name="textBoxPhoneEdit" FontSize="14" FontFamily="Segoe Print" materialDesign:HintAssist.Hint="phone" Width=" 150" PreviewKeyUp="textBoxPhoneEdit_PreviewKeyUp"></TextBox>
             </StackPanel>
             <Grid Margin="0,20">
                 <CheckBox Name="chBoxIsAdminEdit" HorizontalAlignment="Center" Content="Are you addmin?"  FontWeight="Bold" Foreground="Black" FontSize="20" FontFamily="Segoi UI"></CheckBox>
             </Grid>
-            <Button Name="btnSave" HorizontalAlignment="Center" Width="150" Height="50" Margin="0,5" FontFamily="Impact" FontSize="24" Content="Save" Background="#FF3E5F49" BorderBrush="Black" Foreground="White"></Button>
+            <Button Name="btnSave" HorizontalAlignment="Center" Width="150" Height="50" Margin="0,5" Padding="32,0,32,0" FontFamily="Impact" FontSize="24" Content="Save" Background="#FF3E5F49" BorderBrush="Black" Foreground="White" Click="btnSave_Click"></Button>
         </StackPanel>
     </Grid>
 </Window>
